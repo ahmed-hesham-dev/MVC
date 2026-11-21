@@ -1,3 +1,5 @@
+using MVC.Middleware;
+
 namespace MVC
 {
     public class Program
@@ -7,9 +9,28 @@ namespace MVC
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            //Dependency Injection Container 
             builder.Services.AddControllersWithViews();
 
+
+
+
             var app = builder.Build();
+
+
+            // Custom Middlewares
+
+            //app.Use(async (context, next) =>
+            //{
+            //    Console.WriteLine("Hello"); 
+            //    await next.Invoke(context);
+            //    Console.WriteLine("Bye Bye");
+            //});
+
+            app.UseMiddleware<RequestTimeMiddleware>();
+
+
+            // add middleware 
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -22,7 +43,7 @@ namespace MVC
             app.UseHttpsRedirection();
             app.UseRouting();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
             app.MapStaticAssets();
             app.MapControllerRoute(
