@@ -8,6 +8,35 @@ namespace MVC.Controllers
     //[Route("[controller]")]
     public class ProductsController : Controller
     {
+        #region Setion 2-MVC
+
+        // Url : BaseURL/Products/Search?Term=Iphone&MinPrice=1000&page=2`
+
+        public IActionResult Search(ProductFilter productFilter)
+        {
+            return Json(new
+            {
+                Term = productFilter.Term,
+                MinPrice = productFilter.MinPrice,
+                page = productFilter.page
+            });     
+        }
+
+
+
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
+
 
         #region
         //// Functions --> Methods --> Actions -> Endpoint -> Apis 
